@@ -1,4 +1,3 @@
-// LaporLampu — Modern, Edge-to-Edge, Tanpa Tabel
 document.addEventListener('DOMContentLoaded', () => {
     // ========== 1. ARRAY & OBJECT ==========
     let reports = [
@@ -9,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: 105, nama: "Joko Prasetyo", lokasi: "Jl. Flamboyan 8", deskripsi: "Lampu mati total seminggu", kategori: "Lampu mati", status: "Diproses", tanggal: "17/03/2026", timestamp: new Date(2026, 2, 17) }
     ];
 
-    // Helper format tanggal (Object Date)
     function formatDate(date) {
         let d = date.getDate();
         let m = date.getMonth() + 1;
@@ -17,7 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return `${d.toString().padStart(2,'0')}/${m.toString().padStart(2,'0')}/${y}`;
     }
 
-    // ========== RENDER CARD ==========
     function renderHome() {
         const container = document.getElementById('home-feed');
         if (!container) return;
@@ -76,7 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
     }
 
-    // ========== EVENT HANDLER dengan CONFIRM ==========
     function attachCardEvents() {
         document.querySelectorAll('.btn-detail-card').forEach(btn => {
             btn.removeEventListener('click', handleDetail);
@@ -127,7 +123,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // ========== STATISTIK ==========
     function updateStats() {
         document.getElementById('statTotal').innerText = reports.length;
         document.getElementById('statRusak').innerText = reports.filter(r => r.kategori === 'Lampu mati' || r.deskripsi.toLowerCase().includes('mati')).length;
@@ -149,7 +144,6 @@ document.addEventListener('DOMContentLoaded', () => {
         renderAdmin();
     }
 
-    // ========== TAMBAH LAPORAN (Object Math, Date, String) ==========
     function addReport(nama, lokasi, deskripsi, kategori) {
         const namaUpper = nama.toUpperCase(); // Object String
         const uniqueId = Math.floor(Math.random() * 1000000) + Date.now(); // Math + Date
@@ -169,14 +163,12 @@ document.addEventListener('DOMContentLoaded', () => {
         alert('✅ Laporan terkirim.');
     }
 
-    // ========== EVENT DOM ==========
     document.getElementById('submitBtn')?.addEventListener('click', () => {
         const nama = document.getElementById('reportName').value.trim();
         const lokasi = document.getElementById('reportLocation').value.trim();
         const deskripsi = document.getElementById('reportDesc').value.trim();
         const kategori = document.getElementById('reportCategory').value;
         if (!nama || !lokasi || !deskripsi) return alert('Lengkapi semua field.');
-        // Confirm sebelum submit
         if (confirm(`Kirim laporan dari "${nama}"?\nLokasi: ${lokasi}\nDeskripsi: ${deskripsi}`)) {
             addReport(nama, lokasi, deskripsi, kategori);
             document.getElementById('reportName').value = '';
@@ -210,7 +202,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Smooth scroll navigasi
     document.querySelectorAll('.nav-item').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
@@ -220,6 +211,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // INIT
     refreshAll();
 });
