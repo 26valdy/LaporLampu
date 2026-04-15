@@ -1,11 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // ========== 1. ARRAY & OBJECT ==========
     let reports = [
-        { id: 101, nama: "Budi Santoso", lokasi: "Jl. Mawar No. 12", deskripsi: "Lampu mati total, gelap sekali", kategori: "Lampu mati", status: "Diproses", tanggal: "13/03/2026", timestamp: new Date(2026, 2, 13) },
-        { id: 102, nama: "Siti Aminah", lokasi: "Jl. Melati Raya", deskripsi: "Lampu redup, berkedip", kategori: "Lampu redup", status: "Selesai", tanggal: "14/03/2026", timestamp: new Date(2026, 2, 14) },
-        { id: 103, nama: "Agus Wijaya", lokasi: "Jl. Raya No. 45", deskripsi: "Lampu mati 3 hari", kategori: "Lampu mati", status: "Diproses", tanggal: "15/03/2026", timestamp: new Date(2026, 2, 15) },
-        { id: 104, nama: "Rina Hartati", lokasi: "Jl. Kenanga", deskripsi: "Tiang miring, lampu putus", kategori: "Rusak fisik", status: "Menunggu", tanggal: "16/03/2026", timestamp: new Date(2026, 2, 16) },
-        { id: 105, nama: "Joko Prasetyo", lokasi: "Jl. Flamboyan 8", deskripsi: "Lampu mati total seminggu", kategori: "Lampu mati", status: "Diproses", tanggal: "17/03/2026", timestamp: new Date(2026, 2, 17) }
+        { id: 101, nama: "Muhammad Rafi", lokasi: "Jl. Mawar No. 12", deskripsi: "Lampu mati total, gelap sekali", kategori: "Lampu mati", status: "Diproses", tanggal: "13/03/2026", timestamp: new Date(2026, 2, 13) },
+        { id: 102, nama: "Alvin Dinar", lokasi: "Jl. Melati Raya", deskripsi: "Lampu redup, berkedip", kategori: "Lampu redup", status: "Selesai", tanggal: "14/03/2026", timestamp: new Date(2026, 2, 14) },
+        { id: 103, nama: "Fauzan", lokasi: "Jl. Raya No. 45", deskripsi: "Lampu mati 3 hari", kategori: "Lampu mati", status: "Diproses", tanggal: "15/03/2026", timestamp: new Date(2026, 2, 15) },
+        { id: 104, nama: "Yazid Diansyah", lokasi: "Jl. Kenanga", deskripsi: "Tiang miring, lampu putus", kategori: "Rusak fisik", status: "Menunggu", tanggal: "16/03/2026", timestamp: new Date(2026, 2, 16) },
+        { id: 105, nama: "Pandu", lokasi: "Jl. Flamboyan 8", deskripsi: "Lampu mati total seminggu", kategori: "Lampu mati", status: "Diproses", tanggal: "17/03/2026", timestamp: new Date(2026, 2, 17) }
     ];
 
     function formatDate(date) {
@@ -65,9 +64,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span class="card-nama">${r.nama}</span>
                     <span class="card-status ${statusClass}">${r.status}</span>
                 </div>
-                <div class="card-lokasi">📍 ${r.lokasi}</div>
-                <div class="card-deskripsi">📝 ${r.deskripsi}</div>
-                <div class="card-tanggal">📅 ${r.tanggal}</div>
+                <div class="card-lokasi"> ${r.lokasi}</div>
+                <div class="card-deskripsi"> ${r.deskripsi}</div>
+                <div class="card-tanggal"> ${r.tanggal}</div>
                 ${actions}
             </div>
         `;
@@ -91,14 +90,14 @@ document.addEventListener('DOMContentLoaded', () => {
     function handleDetail(e) {
         const id = parseInt(e.currentTarget.dataset.id);
         const r = reports.find(r => r.id === id);
-        if (r) alert(`📋 Detail\nNama: ${r.nama}\nLokasi: ${r.lokasi}\nDeskripsi: ${r.deskripsi}\nKategori: ${r.kategori}\nStatus: ${r.status}\nTanggal: ${r.tanggal}`);
+        if (r) alert(` Detail\nNama: ${r.nama}\nLokasi: ${r.lokasi}\nDeskripsi: ${r.deskripsi}\nKategori: ${r.kategori}\nStatus: ${r.status}\nTanggal: ${r.tanggal}`);
     }
 
     function handleDelete(e) {
         const id = parseInt(e.currentTarget.dataset.id);
         const r = reports.find(r => r.id === id);
         if (!r) return;
-        // KOTAK DIALOG confirm() sebelum menghapus
+  
         const yakin = confirm(`⚠️ Hapus laporan dari ${r.nama} (${r.lokasi})?`);
         if (yakin) {
             reports = reports.filter(r => r.id !== id);
@@ -123,6 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+
     function updateStats() {
         document.getElementById('statTotal').innerText = reports.length;
         document.getElementById('statRusak').innerText = reports.filter(r => r.kategori === 'Lampu mati' || r.deskripsi.toLowerCase().includes('mati')).length;
@@ -144,10 +144,11 @@ document.addEventListener('DOMContentLoaded', () => {
         renderAdmin();
     }
 
+
     function addReport(nama, lokasi, deskripsi, kategori) {
-        const namaUpper = nama.toUpperCase(); // Object String
-        const uniqueId = Math.floor(Math.random() * 1000000) + Date.now(); // Math + Date
-        const now = new Date(); // Object Date
+        const namaUpper = nama; 
+        const uniqueId = Math.floor(Math.random() * 1000000) + Date.now(); 
+        const now = new Date(); 
         const newReport = {
             id: uniqueId,
             nama: namaUpper,
@@ -160,8 +161,9 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         reports.push(newReport);
         refreshAll();
-        alert('✅ Laporan terkirim.');
+        alert('Laporan terkirim.');
     }
+
 
     document.getElementById('submitBtn')?.addEventListener('click', () => {
         const nama = document.getElementById('reportName').value.trim();
@@ -169,6 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const deskripsi = document.getElementById('reportDesc').value.trim();
         const kategori = document.getElementById('reportCategory').value;
         if (!nama || !lokasi || !deskripsi) return alert('Lengkapi semua field.');
+        // Confirm sebelum submit
         if (confirm(`Kirim laporan dari "${nama}"?\nLokasi: ${lokasi}\nDeskripsi: ${deskripsi}`)) {
             addReport(nama, lokasi, deskripsi, kategori);
             document.getElementById('reportName').value = '';
