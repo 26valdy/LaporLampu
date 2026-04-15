@@ -1,6 +1,5 @@
-// LaporLampu — Modern, Edge-to-Edge, Tanpa Tabel
 document.addEventListener('DOMContentLoaded', () => {
-    // ========== 1. ARRAY & OBJECT ==========
+
     let reports = [
         { id: 101, nama: "Muhammad Rafi", lokasi: "Jl. Mawar No. 12", deskripsi: "Lampu mati total, gelap sekali", kategori: "Lampu mati", status: "Diproses", tanggal: "13/03/2026", timestamp: new Date(2026, 2, 13) },
         { id: 102, nama: "Alvin Dinar", lokasi: "Jl. Melati Raya", deskripsi: "Lampu redup, berkedip", kategori: "Lampu redup", status: "Selesai", tanggal: "14/03/2026", timestamp: new Date(2026, 2, 14) },
@@ -9,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: 105, nama: "Pandu", lokasi: "Jl. Flamboyan 8", deskripsi: "Lampu mati total seminggu", kategori: "Lampu mati", status: "Diproses", tanggal: "17/03/2026", timestamp: new Date(2026, 2, 17) }
     ];
 
-    // Helper format tanggal (Object Date)
+
     function formatDate(date) {
         let d = date.getDate();
         let m = date.getMonth() + 1;
@@ -17,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return `${d.toString().padStart(2,'0')}/${m.toString().padStart(2,'0')}/${y}`;
     }
 
-    // ========== RENDER CARD ==========
+
     function renderHome() {
         const container = document.getElementById('home-feed');
         if (!container) return;
@@ -76,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
     }
 
-    // ========== EVENT HANDLER dengan CONFIRM ==========
+
     function attachCardEvents() {
         document.querySelectorAll('.btn-detail-card').forEach(btn => {
             btn.removeEventListener('click', handleDetail);
@@ -102,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const id = parseInt(e.currentTarget.dataset.id);
         const r = reports.find(r => r.id === id);
         if (!r) return;
-        // KOTAK DIALOG confirm() sebelum menghapus
+
         const yakin = confirm(`⚠️ Hapus laporan dari ${r.nama} (${r.lokasi})?`);
         if (yakin) {
             reports = reports.filter(r => r.id !== id);
@@ -127,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // ========== STATISTIK ==========
+
     function updateStats() {
         document.getElementById('statTotal').innerText = reports.length;
         document.getElementById('statRusak').innerText = reports.filter(r => r.kategori === 'Lampu mati' || r.deskripsi.toLowerCase().includes('mati')).length;
@@ -149,11 +148,11 @@ document.addEventListener('DOMContentLoaded', () => {
         renderAdmin();
     }
 
-    // ========== TAMBAH LAPORAN (Object Math, Date, String) ==========
+
     function addReport(nama, lokasi, deskripsi, kategori) {
-        const namaUpper = nama; // Object String
-        const uniqueId = Math.floor(Math.random() * 1000000) + Date.now(); // Math + Date
-        const now = new Date(); // Object Date
+        const namaUpper = nama; 
+        const uniqueId = Math.floor(Math.random() * 1000000) + Date.now(); 
+        const now = new Date(); 
         const newReport = {
             id: uniqueId,
             nama: namaUpper,
