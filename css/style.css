@@ -206,11 +206,10 @@ h1 {
 
 .tip {
     background: white;
-    padding: 0.5rem 1.2rem;
-    border-radius: 40px;
-    font-size: 0.9rem;
+    padding: 0.5rem 7rem;
     color: #1a4c6e;
     border: 1px solid #dce5ed;
+    justify-content: center;
 }
 
 .section-header {
@@ -429,7 +428,6 @@ input:focus, textarea:focus, select:focus {
     text-align: center;
 }
 
-/* RESPONSIVE */
 @media (max-width: 700px) {
     .hero h1 {
         font-size: 2rem;
@@ -441,4 +439,8 @@ input:focus, textarea:focus, select:focus {
     .form-row {
         flex-direction: column;
     }
+}
+
+#form, h2 {
+    padding: 10px 15px;
 }
